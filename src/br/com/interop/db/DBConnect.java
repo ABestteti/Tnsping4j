@@ -6,13 +6,10 @@ import java.sql.SQLException;
 
 public class DBConnect {
 
-	static final String THINCONNECTION = "jdbc:oracle:thin:@";
-	static final String OCICONNECTION  = "jdbc:oracle:oci:@";
-	
 	private long startTime;
 	private long endTime;
 	
-	public void connectDBThin() {
+	public void connectDB() {
 		try {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -24,17 +21,15 @@ public class DBConnect {
 			return;
 		}
 
-		@SuppressWarnings("unused")
-		Connection connection = null;
-
 		try {
+			Connection connection = null;
+
 			System.out.println("Trying to connect to\n" + DBConnectionInfo.getDbStrConnect());
-			
-			DriverManager.setLoginTimeout(4);
-			
+						
 			startTime = System.currentTimeMillis();
 			
-			connection = DriverManager.getConnection( THINCONNECTION + DBConnectionInfo.getDbStrConnect()
+			DriverManager.setLoginTimeout(4);
+			connection = DriverManager.getConnection( DBConnectionInfo.THINCONNECTION + DBConnectionInfo.getDbStrConnect()
 			                                         ,DBConnectionInfo.getDbUserName() 
 			                                         ,DBConnectionInfo.getDbPassWord()
 			                                        );

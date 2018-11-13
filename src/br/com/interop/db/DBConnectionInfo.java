@@ -14,11 +14,18 @@ package br.com.interop.db;
 public final class DBConnectionInfo {
 
 	/**
+	 * Define os tipos possíveis métodos de conexão JDBC com
+	 * o banco de dados Oracle.
+	 */
+	public static final String THINCONNECTION = "jdbc:oracle:thin:@";
+	public static final String OCICONNECTION  = "jdbc:oracle:oci:@";
+
+	/**
 	 * Define códigos de erro Oracle que devem ser descartados numa
 	 * eventual exceção durante o teste de conexão com o banco de 
 	 * dados.
 	 */
-	public static int INVALID_USERNAME_PASSWORD = 1017;
+	public static final int INVALID_USERNAME_PASSWORD = 1017;
 	
 	/**
 	 * Define a quantidade maxima de registros a serem recuperados

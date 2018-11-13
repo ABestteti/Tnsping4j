@@ -19,7 +19,7 @@ public class Main {
 		
 		DBConnect connTest = new DBConnect();
 		
-		connTest.connectDBThin();
+		connTest.connectDB();
 		
 		System.exit(0);
 	}
