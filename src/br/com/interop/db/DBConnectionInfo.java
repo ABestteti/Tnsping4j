@@ -1,5 +1,9 @@
 package br.com.interop.db;
 
+import java.sql.PreparedStatement;
+
+import br.com.interop.enumeration.DBConnectionTypeEnum;
+
 /**
  * Classe reponsavel armazenar as informacoes de conexao com o banco Oracle.
  * <p>
@@ -49,14 +53,22 @@ public final class DBConnectionInfo {
 	// Senha do usuario do banco de dados
 	private static String dbPassWord;
 
-	// A string de conexao deve ser no seguinte
-	// format: localhost:1521:xe
+	// Sintaxe da string de conexão deve seguir
+	// o padrão do Oracle: localhost:1521:xe ou
+	// (DESCRIPTION=(ENABLE=BROKEN)
+	//   (ADDRESS=(PROTOCOL=tcp)(PORT=port_no)(HOST=host_name))
+	//   (CONNECT_DATA=(SERVICE=service_name)))
 	private static String dbStrConnect;
+	
+	// Identifica o método de conexão com o banco de dados
+	// Oracle: THIN driver, ou OCI.
+	private static DBConnectionTypeEnum dbConnType;
 	
 	private DBConnectionInfo() {
 		dbUserName   = "system";
 		dbPassWord   = "dummypassword";
 		dbStrConnect = null;
+		dbConnType   = DBConnectionTypeEnum.THIN;
 	}
 
 	public static String getDbUserName() {
@@ -74,6 +86,12 @@ public final class DBConnectionInfo {
 	public static void setDbStrConnect(String dbStrConnect) {
 		DBConnectionInfo.dbStrConnect = dbStrConnect;
 	}
-	
-	
+
+	public static DBConnectionTypeEnum getDbConnType() {
+		return dbConnType;
+	}
+
+	public static void setDbConnType(DBConnectionTypeEnum dbConnType) {
+		DBConnectionInfo.dbConnType = dbConnType;
+	}
 }

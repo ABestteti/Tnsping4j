@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import br.com.interop.enumeration.DBConnectionTypeEnum;
+
 public class DBConnect {
 
 	private long startTime;
@@ -29,10 +31,16 @@ public class DBConnect {
 			startTime = System.currentTimeMillis();
 			
 			DriverManager.setLoginTimeout(4);
-			connection = DriverManager.getConnection( DBConnectionInfo.THINCONNECTION + DBConnectionInfo.getDbStrConnect()
-			                                         ,DBConnectionInfo.getDbUserName() 
-			                                         ,DBConnectionInfo.getDbPassWord()
-			                                        );
+			
+			if (DBConnectionInfo.getDbConnType() == DBConnectionTypeEnum.THIN) {
+				connection = DriverManager.getConnection(
+						DBConnectionInfo.THINCONNECTION + DBConnectionInfo.getDbStrConnect(),
+						DBConnectionInfo.getDbUserName(), DBConnectionInfo.getDbPassWord());
+			} else {
+				connection = DriverManager.getConnection(
+						DBConnectionInfo.OCICONNECTION + DBConnectionInfo.getDbStrConnect(),
+						DBConnectionInfo.getDbUserName(), DBConnectionInfo.getDbPassWord());
+			}
 									
 		} catch (SQLException e) {
 
@@ -44,6 +52,7 @@ public class DBConnect {
 			
 		} finally {
 			endTime = System.currentTimeMillis();
+			
 		}
 
 		System.out.println("OK (" + (endTime - startTime) + " msec)");

@@ -1,5 +1,16 @@
 package br.com.interop.enumeration;
 
+/**
+ * Enumeracao para representar os tipos de drivers
+ * JDBC que são suportados pela aplicação.
+ * <p>
+ * Alterações:
+ * <p>
+ * 2018.11.14 - ABS - Adiconado JavaDOc.
+ * 
+ * @author Anderson Bestteti Santos
+ *
+ */
 public enum DBConnectionTypeEnum {
 	
 	/**
@@ -39,4 +50,20 @@ public enum DBConnectionTypeEnum {
 		this.description = description;
 	}
 	
+	/**
+     * Recupera a enumeracao com base no identificador.
+     *
+     * @param id
+     *            Valor para o identificador.
+     * @return A enumeracao alcancada.
+     */
+    public static DBConnectionTypeEnum getById(final String id) {
+    	DBConnectionTypeEnum result = null;
+        for (final DBConnectionTypeEnum someEnum : values()) {
+            if (someEnum.getId().equals(id)) {
+                result = someEnum;
+            }
+        }
+        return result;
+    }	
 }
