@@ -10,10 +10,12 @@
 	<property name="debuglevel" value="source,lines,vars"/>
 	<property name="target" value="1.7"/>
 	<property name="source" value="1.7"/>
+	<property name="dir.jarfile" value="jar"/>
 	<path id="Tnsping4j.classpath">
 		<pathelement location="bin"/>
 		<pathelement location="lib/ojdbc7.jar"/>
 		<pathelement location="lib/ucp.jar"/>
+		<pathelement location="lib/commons-cli-1.4.jar"/>
 	</path>
 	<target name="init">
 		<mkdir dir="bin"/>
@@ -53,10 +55,9 @@
 		<antcall target="build"/>
 	</target>
 	<target name="Main">
-		<java classname="br.com.interop.main.Main" failonerror="true" fork="yes" >
-			<arg line="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=SCAN.RAC1D.TJRS.GOV.BR)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=RAC1D)))"/>
+		<java classname="br.com.interop.main.Main" failonerror="true" fork="yes">
+			<arg line="-conn (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=SCAN.RAC1D.TJRS.GOV.BR)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=RAC1D)))"/>
 			<classpath refid="Tnsping4j.classpath"/>
-			
 		</java>
 	</target>
 	<target name="jar" depends="init">
@@ -64,7 +65,22 @@
 		<jar destfile="jar/tnsping4j.jar" basedir="bin">
 			<manifest>
 				<attribute name="Main-Class" value="br.com.interop.main.Main"/>
-			</manifest>
+			</manifest>			
 		</jar>
 	</target>
+		
+    <target name="create_run_jar">
+    	<mkdir dir="${dir.jarfile}"/>
+        <jar destfile="${dir.jarfile}/tnsping4j.jar">
+            <manifest>
+                <attribute name="Main-Class" value="br.com.interop.main.Main"/>
+                <attribute name="Class-Path" value=". lib/commons-cli-1.4.jar"/>
+            </manifest>
+            <fileset dir="bin"/>
+        </jar>
+        <delete dir="${dir.jarfile}/lib"/>
+        <mkdir dir="${dir.jarfile}/lib"/>
+        <copy file="lib/commons-cli-1.4.jar" todir="${dir.jarfile}/lib"/>
+    </target>	
+		
 </project>

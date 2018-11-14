@@ -83,7 +83,7 @@ public final class DBConnectionInfo {
 		return dbStrConnect;
 	}
 
-	public static void setDbStrConnect(String dbStrConnect) {
+	public static void setDbStrConnect(String dbStrConnect) {		
 		DBConnectionInfo.dbStrConnect = dbStrConnect;
 	}
 

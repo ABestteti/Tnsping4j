@@ -8,7 +8,7 @@ package br.com.interop.main;
  */
 public final class Versao {
     
-	private static String descricao = "JBDC Ping utility: ";
+	private static String descricao = "JDBC Ping utility: ";
 	private static String programa  = "TNSPING4J";
 	private static String versao    = "1.0.13.11.2018";
 	

@@ -23,9 +23,8 @@ public class DBConnect {
 			return;
 		}
 
+		Connection connection = null;
 		try {
-			Connection connection = null;
-
 			System.out.println("Trying to connect to\n" + DBConnectionInfo.getDbStrConnect());
 						
 			startTime = System.currentTimeMillis();
@@ -45,14 +44,23 @@ public class DBConnect {
 		} catch (SQLException e) {
 
 			if (e.getErrorCode() != DBConnectionInfo.INVALID_USERNAME_PASSWORD) {
-				System.out.println("Failed to connect to Oracle database.");
-				e.printStackTrace();
-				return;
+				System.err.println("Failed to connect to Oracle database.");
+				throw new RuntimeException(e.getMessage());
 			}
 			
+		} catch (Error e) {
+			System.err.println("Failed to connect to Oracle database.");
+			throw new RuntimeException(e.getMessage());
 		} finally {
 			endTime = System.currentTimeMillis();
 			
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {					
+					throw new RuntimeException(e);
+				}
+			}
 		}
 
 		System.out.println("OK (" + (endTime - startTime) + " msec)");
