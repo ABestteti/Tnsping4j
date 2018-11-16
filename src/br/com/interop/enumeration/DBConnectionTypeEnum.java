@@ -1,12 +1,12 @@
 package br.com.interop.enumeration;
 
 /**
- * Enumeracao para representar os tipos de drivers
- * JDBC que são suportados pela aplicação.
+ * This enumeration represents thy JDBC drivers
+ * used by application.
  * <p>
- * Alterações:
+ * Change log:
  * <p>
- * 2018.11.14 - ABS - Adiconado JavaDOc.
+ * 2018.11.14 - ABS - Added JavaDOc.
  * 
  * @author Anderson Bestteti Santos
  *
@@ -14,13 +14,12 @@ package br.com.interop.enumeration;
 public enum DBConnectionTypeEnum {
 	
 	/**
-	 * Enumeração para indicar o tipo
-	 * de conexão Thin.
+	 * Enumeration for THIN driver connection type.
 	 */
 	THIN("thin", "JDBC Thin driver"),	
 	/**
-	 * Enumeração para indicar o tipo
-	 * de conexão OCI (Oracle Call Interface)
+	 * Enumeration for OCI (Oracle Call Interface) driver
+	 * connection type.
 	 */
 	OCI("oci", "JDBC OCI driver");
 	
@@ -28,13 +27,13 @@ public enum DBConnectionTypeEnum {
 	private String description;
 
     /**
-     * Construtor padrão para a Enum.
-     * @param id com o código.
-     * @param descricao com descritivo da Enum.
+     * Enum's default constructor.
+     * @param id of enumeration.
+     * @param description of enumeration.
      */
-	DBConnectionTypeEnum(final String id, final String descricao) {
+	DBConnectionTypeEnum(final String id, final String description) {
         setId(id);
-        setDescription(descricao);
+        setDescription(description);
     }
     
 	public String getId() {
@@ -51,11 +50,10 @@ public enum DBConnectionTypeEnum {
 	}
 	
 	/**
-     * Recupera a enumeracao com base no identificador.
+     * Retrieve the enumeration based on its id.
      *
-     * @param id
-     *            Valor para o identificador.
-     * @return A enumeracao alcancada.
+     * @param id An Id value.
+     * @return The enumeration found. 
      */
     public static DBConnectionTypeEnum getById(final String id) {
     	DBConnectionTypeEnum result = null;

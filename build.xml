@@ -70,17 +70,21 @@
 	</target>
 		
     <target name="create_run_jar">
+    	<delete dir="${dir.jarfile}/lib"/>
+    	<delete dir="${dir.jarfile}"/>
     	<mkdir dir="${dir.jarfile}"/>
-        <jar destfile="${dir.jarfile}/tnsping4j.jar">
+        <jar destfile="${dir.jarfile}/lib/tnsping4j.jar">
             <manifest>
                 <attribute name="Main-Class" value="br.com.interop.main.Main"/>
-                <attribute name="Class-Path" value=". lib/commons-cli-1.4.jar"/>
+                <!-- <attribute name="Class-Path" value=". lib/commons-cli-1.4.jar lib/ojdbc8.jar"/> -->
+            	<attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="bin"/>
         </jar>
-        <delete dir="${dir.jarfile}/lib"/>
         <mkdir dir="${dir.jarfile}/lib"/>
         <copy file="lib/commons-cli-1.4.jar" todir="${dir.jarfile}/lib"/>
+        <copy file="scripts/tnsping4j.bat"   todir="${dir.jarfile}" failonerror="no"/>
+    	<copy file="scripts/tnsping4j.sh"    todir="${dir.jarfile}" failonerror="no"/>
     </target>	
 		
 </project>

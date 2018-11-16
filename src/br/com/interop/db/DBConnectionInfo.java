@@ -5,13 +5,12 @@ import java.sql.PreparedStatement;
 import br.com.interop.enumeration.DBConnectionTypeEnum;
 
 /**
- * Classe reponsavel armazenar as informacoes de conexao com o banco Oracle.
- * <p>
- * <b>Empresa:</b> Acao Sistemas de Informatica Ltda.
+ * This class stores information needed to allow the application
+ * connect to an Oracle database using Oracle's JDBC driver
  * <p>
  * Alterações:
  * <p>
- * 2018.03.15 - ABS - Adicionado JavaDoc na classe.
+ * 2018.11.15 - ABS - Added JavaDoc.
  * 
  * @author Anderson Bestteti
  */
