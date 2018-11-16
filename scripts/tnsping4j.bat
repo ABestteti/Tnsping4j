@@ -59,10 +59,10 @@ echo * net_service_string
 echo   A valid connect string to be used by Oracle JDBC driver.
 echo .
 echo Examples
-echo 1) Testing database connection with Oracle JDBC THIN driver
+echo 1) Testing database connection using Oracle JDBC THIN driver
 echo tnsping4j.bat -ojdbc C:\Oracle\sqlcl\lib\ojdbc8.jar -conn "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle-server)(PORT=1521)))(CONNECT_DATA=SERVICE_NAME=SERVICE)))"
 echo.
-echo 2) Testing atabase connection with Oracle JDBC OCI driver
+echo 2) Testing database connection using Oracle JDBC OCI driver
 echo tnsping4j.bat -ojdbc C:\Oracle\sqlcl\lib\ojdbc8.jar -conn ORCL -oci
 
 :end

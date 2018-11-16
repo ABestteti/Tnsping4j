@@ -1,7 +1,7 @@
 package br.com.interop.enumeration;
 
 /**
- * This enumeration represents thy JDBC drivers
+ * This enumeration represents the JDBC drivers
  * used by application.
  * <p>
  * Change log:

@@ -26,10 +26,10 @@ public class DBConnect {
 		Connection connection = null;
 		try {
 			System.out.println("Trying to connect to\n" + DBConnectionInfo.getDbStrConnect());
-						
-			startTime = System.currentTimeMillis();
-			
+									
 			DriverManager.setLoginTimeout(4);
+			
+			startTime = System.currentTimeMillis();
 			
 			if (DBConnectionInfo.getDbConnType() == DBConnectionTypeEnum.THIN) {
 				connection = DriverManager.getConnection(
