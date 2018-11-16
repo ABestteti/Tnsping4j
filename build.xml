@@ -11,6 +11,7 @@
 	<property name="target" value="1.7"/>
 	<property name="source" value="1.7"/>
 	<property name="dir.jarfile" value="jar"/>
+	<property name="dir.distfile" value="dist"/>
 	<path id="Tnsping4j.classpath">
 		<pathelement location="bin"/>
 		<pathelement location="lib/ojdbc7.jar"/>
@@ -28,7 +29,8 @@
 	</target>
 	<target name="clean">
 		<delete dir="bin"/>
-		<delete dir="jar"/>
+		<delete dir="${dir.jarfile}"/>
+		<delete dir="${dir.distfile}"/>
 	</target>
 	<target depends="clean" name="cleanall"/>
 	<target depends="build-subprojects,build-project" name="build"/>
@@ -67,8 +69,7 @@
 				<attribute name="Main-Class" value="br.com.interop.main.Main"/>
 			</manifest>			
 		</jar>
-	</target>
-		
+	</target>		
     <target name="create_run_jar">
     	<delete dir="${dir.jarfile}/lib"/>
     	<delete dir="${dir.jarfile}"/>
@@ -85,6 +86,10 @@
         <copy file="lib/commons-cli-1.4.jar" todir="${dir.jarfile}/lib"/>
         <copy file="scripts/tnsping4j.bat"   todir="${dir.jarfile}" failonerror="no"/>
     	<copy file="scripts/tnsping4j.sh"    todir="${dir.jarfile}" failonerror="no"/>
-    </target>	
-		
+    </target>
+	<target name="create_zip_dist" depends="create_run_jar">
+    	<delete dir="${dir.distfile}"/>
+    	<mkdir dir="${dir.distfile}"/>
+		<zip destfile="${dir.distfile}/tnsping4j.zip" basedir="${dir.jarfile}" />
+    </target>
 </project>
