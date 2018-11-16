@@ -1,1 +1,1 @@
-# Tnsping4j - It is a utility to test connection to a Oracle database using Oracle's JDBC driver
+# Tnsping4j - It is an Java utility to test connection to a Oracle database
