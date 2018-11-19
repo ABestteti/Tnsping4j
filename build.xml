@@ -86,6 +86,7 @@
         <copy file="lib/commons-cli-1.4.jar" todir="${dir.jarfile}/lib"/>
         <copy file="scripts/tnsping4j.bat"   todir="${dir.jarfile}" failonerror="no"/>
     	<copy file="scripts/tnsping4j.sh"    todir="${dir.jarfile}" failonerror="no"/>
+    	<copy file="scripts/tnsping4j.ps1"    todir="${dir.jarfile}" failonerror="no"/>
     </target>
 	<target name="create_zip_dist" depends="create_run_jar">
     	<delete dir="${dir.distfile}"/>
