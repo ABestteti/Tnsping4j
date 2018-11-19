@@ -2,10 +2,10 @@
 #                    classpath.
 
 param (
-    [Parameter(Mandatory=$false)][string]$help,
-    [string]$ojdbc,
-    [string]$conn,
-    [string]$oci
+    [Parameter(Mandatory=$false)][switch]$help = $false,
+    [Parameter(Mandatory=$true)][string]$ojdbc,
+    [Parameter(Mandatory=$true)][string]$conn,
+    [Parameter(Mandatory=$false)][switch]$oci = $false
  )
 
 # Display usage information
@@ -31,4 +31,33 @@ function usage() {
     Write-Host "tnsping4j.ps1 -ojdbc C:\Oracle\sqlcl\lib\ojdbc8.jar -conn ORCL -oci"
 }
 
-Write-Host $ojdbc
+if ($help) {
+    usage
+    Exit
+}
+
+$scriptpath = $PSScriptRoot.ToString() + "\lib"
+$FileList   = get-childitem $scriptpath 
+
+# TNSPCLASSPATH must contain paths to all needed classes for TNSPING4J,
+# separated by semicolons.  All .jar files under lib
+# below the directory the .bat file is in are automatically added.
+# If you need others, either drop them in that directory, or add them
+# here manually (dropping them in the directory is better!).
+$tnspclasspath = "."
+
+# Prepare the classpath to run the application with the
+# list of jar libraries required.
+ForEach ($jarFile in $FileList) {
+    $tnspclasspath = $tnspclasspath + ";" + ($jarFile.FullName)
+}
+
+$tnspclasspath = $tnspclasspath + ";" + $ojdbc
+
+if ($oci) {
+    Write-Host java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
+    & java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
+} else {
+    Write-Host java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
+    & java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn
+}
