@@ -3,8 +3,8 @@
 
 param (
     [Parameter(Mandatory=$false)][switch]$help = $false,
-    [Parameter(Mandatory=$true)][string]$ojdbc,
-    [Parameter(Mandatory=$true)][string]$conn,
+    [Parameter(Mandatory=$false)][string]$ojdbc,
+    [Parameter(Mandatory=$false)][string]$conn,
     [Parameter(Mandatory=$false)][switch]$oci = $false
  )
 
@@ -55,9 +55,7 @@ ForEach ($jarFile in $FileList) {
 $tnspclasspath = $tnspclasspath + ";" + $ojdbc
 
 if ($oci) {
-    Write-Host java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
     & java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
 } else {
-    Write-Host java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn -oci
     & java -classpath $tnspclasspath br.com.interop.main.Main -conn $conn
 }
