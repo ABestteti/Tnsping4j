@@ -26,7 +26,6 @@ a proper TNSNAMES.ora file configured.
 Specifies that the connection test must be done through Oracle JDBC-OCI driver. This is an optional parameter, when supressed the
 Oracle JDBC Thin driver will be used.
 
-
 .OUTPUTS
 
 Returns the status of connection test. OK (time in miliseconds) for sucessfull connection; otherwise an error will be shown.
