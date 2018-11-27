@@ -11,7 +11,7 @@ sources in Java EE application servers and containers, such as Oracle Weblogic, 
 
 The utility can be launched with aid of three scripts for Windows, Linux/Mac and PowerShell. 
 
-# Here are some examples in PowerShell.
+###### Here are some examples in PowerShell.
 
 - Using JDBC-OCI driver
 ```
