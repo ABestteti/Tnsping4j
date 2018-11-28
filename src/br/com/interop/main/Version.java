@@ -9,7 +9,7 @@ package br.com.interop.main;
 public final class Version {  
 	private static String description = "JDBC ping utility: ";
 	private static String program     = "TNSPING4J";
-	private static String version     = "1.0.13.11.2018";
+	private static String version     = "1.0.28.11.2018";
 	
 	
 	public static String getStringVersao() {

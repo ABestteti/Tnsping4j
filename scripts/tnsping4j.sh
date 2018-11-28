@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # tnsping4j.sh  -- script to TNSPING4J under Linux/Unix with an 
 #                  appropriate classpath.
 
@@ -19,10 +19,10 @@ usage() {
   echo
   echo Examples
   echo 1\) Testing database connection using Oracle JDBC THIN driver
-  echo tnsping4j.sh -ojdbc C:\Oracle\sqlcl\lib\ojdbc8.jar -conn \"'(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle-server)(PORT=1521)))(CONNECT_DATA=SERVICE_NAME=SERVICE)))'\"
+  echo tnsping4j.sh -ojdbc $ORACLE_HOME/jdbc/lib/ojdbc8.jar -conn \"'(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle-server)(PORT=1521)))(CONNECT_DATA=SERVICE_NAME=SERVICE)))'\"
   echo
   echo 2\) Testing database connection using Oracle JDBC OCI driver
-  echo tnsping4j.sh -ojdbc C:\Oracle\sqlcl\lib\ojdbc8.jar -conn ORCL -oci
+  echo tnsping4j.sh -ojdbc $ORACLE_HOME/jdbc/lib/ojdbc8.jar -conn ORCL -oci
 }
 
 if [[ "$1" = "-help" || "$1" = "" ]] ; then
@@ -77,4 +77,4 @@ if [ -z "$JAVACMD" ] ; then
 fi
 
 # Run the relevant Java code with the appropriate classpath
-$JAVACMD -classpath "$tnspclasspath" br.com.interop.main.Main $2 $3 $4 $5
+"$JAVACMD" -classpath "$tnspclasspath" br.com.interop.main.Main $2 $3 $4 $5

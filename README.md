@@ -1,4 +1,4 @@
-# Tnsping4j (Version 1.0.13.11.2018) - It is a Java utility to test connection to an Oracle database
+# Tnsping4j (Version 1.0.28.11.2018) - It is a Java utility to test connection to an Oracle database
 
 Test database connectivity through Oracle JDBC driver. The test can be done using
 either Oracle JDBC Thin driver, or Oracle JDBC-OCI driver. The last one requires additional
